@@ -1,7 +1,6 @@
 $LOAD_PATH.unshift 'lib'
 
-require 'street_address/us'
-require 'street_address/canada'
+require 'street_address'
 
 Gem::Specification.new do |s|
   s.name = "StreetAddress"
