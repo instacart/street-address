@@ -855,7 +855,7 @@ module StreetAddress
       end
 
 
-      def line1(s = "")
+      def line1(s = "", no_unit = false)
         parts = []
         if intersection?
           parts << prefix       if prefix
@@ -873,9 +873,11 @@ module StreetAddress
           parts << street if street
           parts << street_type if street_type && !redundant_street_type
           parts << suffix if suffix
-          parts << unit_prefix if unit_prefix
-          #follow guidelines: http://pe.usps.gov/cpim/ftp/pubs/Pub28/pub28.pdf pg28
-          parts << (unit_prefix ? unit : "\# #{unit}") if unit
+          unless no_unit
+            parts << unit_prefix if unit_prefix
+            #follow guidelines: http://pe.usps.gov/cpim/ftp/pubs/Pub28/pub28.pdf pg28
+            parts << (unit_prefix ? unit : "\# #{unit}") if unit
+          end
         end
         s + parts.join(' ').strip
       end
@@ -899,6 +901,8 @@ module StreetAddress
         case format
         when :line1
           s << line1(s)
+        when :line1_no_unit
+          s << line1(s, true)
         when :line2
           s << line2(s)
         else
