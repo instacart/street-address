@@ -569,7 +569,7 @@ module StreetAddress
       Regexp::IGNORECASE
     )
     self.dircode_regexp = Regexp.new(DIRECTION_CODES.keys.join("|"), Regexp::IGNORECASE)
-    self.zip_regexp     = /(?:(?<postal_code>\d{5})(?:-?(?<postal_code_ext>\d{4}))?)/
+    self.zip_regexp     = /(?:(?<postal_code>\d{5})(?:( |-)?(?<postal_code_ext>\d{4}))?)/
     self.corner_regexp  = /(?:\band\b|\bat\b|&|\@)/i
 
     # we don't include letters in the number regex because we want to

@@ -55,6 +55,10 @@ class AddressTest < MiniTest::Test
       :line1 => "1005 Gravenstein Hwy",
       :line2 => "Sebastopol, CA"
     },
+    "1005 Gravenstein Hwy 95472-1234" => {
+        :line1 => "1005 Gravenstein Hwy",
+        :line2 => "95472-1234"
+    },
     "115 Broadway San Francisco CA" => {
       :line1 => "115 Broadway",
       :line2 => "San Francisco, CA"
