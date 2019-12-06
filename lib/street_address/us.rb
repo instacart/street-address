@@ -665,7 +665,15 @@ module StreetAddress
       [^\w\x23]*    # skip non-word chars except # (eg unit)
       #{number_regexp} \W*
       (?:#{fraction_regexp}\W*)?
+
+      (
+      # special case for Connecticut (CT)
+      (?=.*#{street_type_regexp}.*CT.*)
+      #{street_regexp}\W+(?=.*CT)
+      |
       #{street_regexp}\W+
+      )
+
       (?:#{unit_regexp}\W+)?
       #{place_regexp}
       \W*         # require on non-word chars at end

@@ -338,7 +338,33 @@ class StreetAddressUsTest < MiniTest::Test
       :state=>"VA",
       :postal_code=>"22206",
       :postal_code_ext=>nil
-    }
+    },
+    "1234 Penny Ln, Hartford, CT 12345" => {
+        :number=>"1234",
+        :street=>"Penny",
+        :street_type=>"Ln",
+        :unit=>nil,
+        :unit_prefix=>nil,
+        :suffix=>nil,
+        :prefix=>nil,
+        :city=>"Hartford",
+        :state=>"CT",
+        :postal_code=>"12345",
+        :postal_code_ext=>nil
+    },
+    "1234 Penny Ln #567, Hartford, CT 12345" => {
+        :number=>"1234",
+        :street=>"Penny",
+        :street_type=>"Ln",
+        :unit=>"567",
+        :unit_prefix=>"#",
+        :suffix=>nil,
+        :prefix=>nil,
+        :city=>"Hartford",
+        :state=>"CT",
+        :postal_code=>"12345",
+        :postal_code_ext=>nil
+    },
   }
 
 
