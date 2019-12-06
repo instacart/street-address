@@ -55,6 +55,10 @@ class AddressTest < MiniTest::Test
       :line1 => "1005 Gravenstein Hwy",
       :line2 => "Sebastopol, CA"
     },
+    "1005 Gravenstein Hwy 95472 1234" => {
+        :line1 => "1005 Gravenstein Hwy",
+        :line2 => "95472-1234"
+    },
     "115 Broadway San Francisco CA" => {
       :line1 => "115 Broadway",
       :line2 => "San Francisco, CA"
@@ -134,6 +138,18 @@ class AddressTest < MiniTest::Test
     "44 Canal Center Plaza Suite 500, Alexandria, VA 22314" => {
       :line1 => "44 Canal Center Plz Suite 500",
       :line2 => "Alexandria, VA 22314"
+    },
+    "1234 Penny Ln, Hartford, CT 12345" => {
+      :line1 => "1234 Penny Ln",
+      :line2 => "Hartford, CT 12345"
+    },
+    "1234 Penny Ln Hartford, CT 12345" => {
+      :line1 => "1234 Penny Ln",
+      :line2 => "Hartford, CT 12345"
+    },
+    "1234 Penny Ln Hartford, CT" => {
+      :line1 => "1234 Penny Ln",
+      :line2 => "Hartford, CT"
     }
   }
 
@@ -198,7 +214,16 @@ class AddressTest < MiniTest::Test
     "233 S Wacker Dr lobby 60606" => {
       :line1 => "233 S Wacker Dr Lobby",
       :line2 => "60606"
+    },
+    "1234 Millstation CT" => {
+      :line1 => "1234 Millstation Ct",
+      :line2 => ""
     }
+    #FIXME
+    #"5678 Mill Station CT" => {
+    #  :line1 => "1234 Millstation Ct",
+    #  :line2 => ""
+    #},
     #FIXME
     # "(233 S Wacker Dr lobby 60606)" => {
     # :line1 => "233 S Wacker Dr Lobby",

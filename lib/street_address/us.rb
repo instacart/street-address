@@ -569,7 +569,7 @@ module StreetAddress
       Regexp::IGNORECASE
     )
     self.dircode_regexp = Regexp.new(DIRECTION_CODES.keys.join("|"), Regexp::IGNORECASE)
-    self.zip_regexp     = /(?:(?<postal_code>\d{5})(?:-?(?<postal_code_ext>\d{4}))?)/
+    self.zip_regexp     = /(?:(?<postal_code>\d{5})(?:( |-)?(?<postal_code_ext>\d{4}))?)/
     self.corner_regexp  = /(?:\band\b|\bat\b|&|\@)/i
 
     # we don't include letters in the number regex because we want to
@@ -665,7 +665,15 @@ module StreetAddress
       [^\w\x23]*    # skip non-word chars except # (eg unit)
       #{number_regexp} \W*
       (?:#{fraction_regexp}\W*)?
+
+      (
+      # special case for Connecticut (CT)
+      (?=.*#{street_type_regexp}.*CT.*)
+      #{street_regexp}\W+(?=.*CT)
+      |
       #{street_regexp}\W+
+      )
+
       (?:#{unit_regexp}\W+)?
       #{place_regexp}
       \W*         # require on non-word chars at end
