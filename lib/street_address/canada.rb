@@ -162,7 +162,7 @@ module StreetAddress
         |
         (?:(?<prefix> #{direct_regexp})\W+)?
         (?:
-          (?<street> [^,]*\d)
+          (?<street> [^,]*\d)\b
           (?:[^\w,]* (?<suffix> #{direct_regexp})\b)
           |
           (?<street> [^,]+)
@@ -237,11 +237,23 @@ module StreetAddress
     self.address_regexp = /
       \A
       [^\w\x23]*    # skip non-word chars except # (eg unit)
-      #{number_regexp} \W*
-      (?:#{fraction_regexp}\W*)?
-      #{street_regexp}\W+
-      (?:#{unit_regexp}\W+)?
-      #{place_regexp}
+      (
+        # checks if unit is before the number
+        (?:#{unit_regexp}\W+)
+        #{number_regexp} \W*
+        (?:#{fraction_regexp}\W*)?
+        #{street_regexp}\W+
+        #{place_regexp}
+      )
+      |
+      (
+        #{number_regexp} \W*
+        (?:#{fraction_regexp}\W*)?
+        #{street_regexp}\W+
+        (?:#{unit_regexp}\W+)?
+        #{place_regexp}
+      )
+
       \W*         # require on non-word chars at end
       \z           # right up to end of string
     /ix;
