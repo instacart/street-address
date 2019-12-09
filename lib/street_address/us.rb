@@ -667,9 +667,9 @@ module StreetAddress
       (?:#{fraction_regexp}\W*)?
 
       (
-      # special case for Connecticut and Louisiana (CT and LA)
-      (?=.*#{street_regexp}.*\b(CT|LA)\b.*)
-      #{street_regexp}\W+(?=.*\b(CT|LA)\b)
+      # special case for Connecticut (CT)
+      (?=.*#{street_type_regexp}.*CT.*)
+      #{street_regexp}\W+(?=.*CT)
       |
       #{street_regexp}\W+
       )
