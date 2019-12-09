@@ -365,6 +365,14 @@ class StreetAddressUsTest < MiniTest::Test
         :postal_code=>"12345",
         :postal_code_ext=>nil
     },
+    "1960 Bourbon St, New Orleans, LA 12345" => {
+        :number=>"1960",
+        :street=>"Bourbon",
+        :street_type=>"St",
+        :city=>"New Orleans",
+        :state=>"LA",
+        :postal_code=>"12345",
+    }
   }
 
 
